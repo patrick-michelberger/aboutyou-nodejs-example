@@ -24,7 +24,8 @@
 
 <script type="text/ng-template" id="additionalLayer.html">
     <div class="modal-header">
-        <h3 class="modal-title">{{product.name}}</h3>
+        <h3 class="modal-title pull-left">{{product.name}}</h3>
+        <button class="btn btn-default pull-right" ng-click="cancel()">X</button>
     </div>
     <div class="modal-body">
         <form class="form-horizontal" role="form">
@@ -46,9 +47,8 @@
                     <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Bitte Image URL angeben">
                 </div>
             </div>
-            <hr/>
-            <h5>Weitere Attribute hinzufügen</h5>
-            <div class="form-group form-group-lg" style="margin-top:25px;">
+            <h5 style="margin:30px 0px;">Weitere Attribute hinzufügen</h5>
+            <div class="form-group form-group-lg">
                 <label class="col-sm-2 control-label" for="formGroupInputLarge">Key</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Schlüssel angeben">
@@ -67,6 +67,5 @@
     </div>
     <div class="modal-footer">
         <button class="btn btn-default" ng-click="addToBasket()">In den Warenkorb</button>
-        <button class="btn btn-default" ng-click="cancel()">X</button>
     </div>
 </script>
