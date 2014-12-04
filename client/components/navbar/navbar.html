@@ -1,8 +1,6 @@
 <div class="navbar navbar-default navbar-static-top" ng-controller="NavbarCtrl">
   <div class="container">
-    <div class="navbar-header">
-      <a href="/" class="navbar-brand"><b>ABOUT YOU</b> Test Application</a>
-    </div>
+      <select class="form-control pull-left col-xs-6" ng-model="currentApp" ng-options="app.name for app in apps" style="width: 50%; margin-top:10px;"></select>
       <div ng-repeat="parent in categories" class="dropdown pull-right" style="margin-top:10px; margin-left: 10px;">
           <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
               {{parent.name}}

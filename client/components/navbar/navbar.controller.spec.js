@@ -15,6 +15,9 @@ describe('Controller: NavbarCtrl', function () {
         $httpBackend.expectGET('/api/categories')
             .respond(categoryData);
 
+        $httpBackend.expectGET('/api/apps')
+            .respond(appData);
+
         scope = $rootScope.$new();
         NavbarCtrl = $controller('NavbarCtrl', {
             $scope: scope
@@ -24,6 +27,11 @@ describe('Controller: NavbarCtrl', function () {
     it('should attach a list of categories to the scope', function () {
         $httpBackend.flush();
         expect(scope.categories.length).toBe(2);
+    });
+
+    it('should attach a list of applications to the scope', function () {
+        $httpBackend.flush();
+        expect(scope.apps.length).toBe(2);
     });
 
 });
@@ -103,5 +111,16 @@ var categoryData = [
                 "subCats": []
             }
         ]
+    }
+];
+
+var appData = [
+    {
+        "name": "Sample App",
+        "id": 100
+    },
+    {
+        "name": "Michelberger",
+        "id": 277
     }
 ];
