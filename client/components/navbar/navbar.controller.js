@@ -1,11 +1,10 @@
 'use strict';
 
 angular.module('aboutYouApp')
-  .controller('NavbarCtrl', function ($scope, $location) {
-    $scope.menu = [{
-      'title': 'Home',
-      'link': '/'
-    }];
+  .controller('NavbarCtrl', function ($scope, $location, $http) {
+    $http.get('/api/categories').success(function(categories) {
+        $scope.categories = categories;
+    });
 
     $scope.isCollapsed = true;
 

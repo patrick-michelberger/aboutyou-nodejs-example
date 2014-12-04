@@ -1,20 +1,25 @@
 <div class="navbar navbar-default navbar-static-top" ng-controller="NavbarCtrl">
   <div class="container">
     <div class="navbar-header">
-      <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="/" class="navbar-brand">about-you</a>
+      <a href="/" class="navbar-brand"><b>ABOUT YOU</b> Test Application</a>
     </div>
-    <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
-      <ul class="nav navbar-nav">
-        <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
-            <a ng-href="{{item.link}}">{{item.title}}</a>
-        </li>
-      </ul>
-    </div>
+      <div ng-repeat="parent in categories" class="dropdown pull-right" style="margin-top:10px; margin-left: 10px;">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+              {{parent.name}}
+              <span class="caret" ng-show="parent.subCats.length>1" ></span>
+          </button>
+          <ul ng-show="parent.subCats.length>1" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+              <li ng-repeat="subCat in parent.subCats"  role="presentation">
+                  <a role="menuitem" tabindex="-1" ng-href="/categories/{{subCat.id}}">{{subCat.name}}</a>
+                  <ul>
+                      <li ng-repeat="subSubCat in subCat.subCats">
+                          <a ng-href="/categories/{{subSubCat.id}}">
+                              {{subSubCat.name}}
+                          </a>
+                      </li>
+                  </ul>
+              </li>
+          </ul>
+      </div>
   </div>
 </div>
