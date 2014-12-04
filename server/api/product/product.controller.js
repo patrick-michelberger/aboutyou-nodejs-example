@@ -36,28 +36,22 @@ var parseProductsToJSON = function(products) {
 
     return _.map(products, function(product) {
 
-        var brand = product.getBrand();
-        var image = product.getDefaultImage();
-
         var result = {
             "id" : product.id,
             "name" : product.name,
             "isSale" : product.isSale,
             "isActive" : product.isActive,
-            "descriptionShort" : product.descriptionShort,
-            "descriptionLong" : product.descriptionLong,
+            "description" : product.descriptionShort,
             "brand" : {
-                "id" : brand.id,
-                "name" : brand.name
+                "id" : product.brand.id,
+                "name" : product.brand.name
             },
-            "minPrice" : product.minPrice,
-            "maxPrice" : product.maxPrice,
+            "price" : product.minPrice,
             "defaultImage" : {
-                "imageSize" : image.imageSize,
-                "height" : image.MAX_WIDTH,
-                "url" : image.url
+                "url" : product.defaultImage ? product.defaultImage.url : null,
+                "imageSize" : product.defaultImage ? product.defaultImage.imageSize : null
             }
-        }
+        };
 
         return result;
 
