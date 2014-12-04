@@ -3,26 +3,27 @@
 var _ = require('lodash');
 
 // Get list of categorys
-exports.index = function(req, res) {
+exports.index = function (req, res) {
 
     var ay = req.aboutYou;
 
-    ay.fetchCategoryTree(function(error, categoryTreeResult) {
+    ay.fetchCategoryTree(function (error, categoryTreeResult) {
         var categories = categoryTreeResult.categories;
 
         // Build category tree
-        for(var a = 0; a < categories.length; a++) {
+        for (var a = 0; a < categories.length; a++) {
 
             var catA = categories[a];
             catA['subCats'] = [];
 
-            for(var b = 0; b < catA.subcategories.length; b++) {
+
+            for (var b = 0; b < catA.subcategories.length; b++) {
 
                 var catB = catA.subcategories[b];
                 catA['subCats'].push(catB);
                 catB['subCats'] = [];
 
-                for(var c = 0; c < catB.subcategories.length; c++) {
+                for (var c = 0; c < catB.subcategories.length; c++) {
 
                     var catC = catB.subcategories[c];
                     catB['subCats'].push(catC);
@@ -39,21 +40,43 @@ exports.index = function(req, res) {
 
         }
 
+        var result = _.clone(categories, true);
+
         // Remove category manager on every node
-        for(var a = 0; a < categories.length; a++) {
-            delete categories[a]._categoryManager;
-            for(var b = 0; b < categories[a].subCats.length; b++) {
-                delete categories[a].subCats[b]._categoryManager;
-                for(var c = 0; c < categories[c].subCats.length; c++) {
-                    delete categories[c].subCats[c]._categoryManager;
-                    for(var d = 0; d < categories[d].subCats.length; d++) {
-                        delete categories[d].subCats[d]._categoryManager;
+        for (var a = 0; a < result.length; a++) {
+
+            if (result && result[a]) {
+
+
+                delete result[a]._categoryManager;
+
+                for (var b = 0; b < result[a].subCats.length; b++) {
+
+                    if (result[a].subCats && result[a].subCats[b]) {
+                        delete result[a].subCats[b]._categoryManager;
+
+                        for (var c = 0; c < result[a].subCats[b].subCats.length; c++) {
+
+                            if (result[a].subCats[b].subCats && result[a].subCats[b].subCats[c]) {
+                                delete result[a].subCats[b].subCats[c]._categoryManager;
+
+                                for (var d = 0; d < result[a].subCats[b].subCats[c].subCats.length; d++) {
+
+                                    if (result[a].subCats[b].subCats[c].subCats && result[a].subCats[b].subCats[c].subCats[d]) {
+                                        delete result[a].subCats[b].subCats[c].subCats[d]._categoryManager;
+                                    }
+
+                                }
+                            }
+                        }
                     }
                 }
+
             }
+
         }
 
-        res.json(categories);
+        res.json(result);
     });
 
 };
