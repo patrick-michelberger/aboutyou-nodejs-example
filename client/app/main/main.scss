@@ -4,6 +4,7 @@
 
 #ay_product_canvas .thumbnail {
   height: 323px;
+  cursor: pointer;
 }
 
 #ay_product_canvas .ay_brand_name {
@@ -15,9 +16,14 @@
   font-weight: 100;
 }
 
+.modal-footer {
+  margin-top: 35px;
+}
+
 .footer {
     text-align: center;
     padding: 30px 0;
     margin-top: 70px;
     border-top: 1px solid #E5E5E5;
 }
+
