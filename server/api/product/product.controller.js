@@ -48,7 +48,7 @@ var parseProductsToJSON = function(products) {
             },
             "price" : product.minPrice,
             "defaultImage" : {
-                "url" : product.defaultImage ? product.defaultImage.url : null,
+                "url" : product.defaultImage ? product.defaultImage.getUrl(450,450) : null,
                 "imageSize" : product.defaultImage ? product.defaultImage.imageSize : null
             }
         };
