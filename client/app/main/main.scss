@@ -1,9 +1,10 @@
+$screen-sm-min: 768px;
+
 #ay_product_canvas .caption {
   text-align: center;
 }
 
 #ay_product_canvas .thumbnail {
-  height: 323px;
   cursor: pointer;
 }
 
@@ -27,10 +28,21 @@
  * Modal
  ******/
 
+.modal-dialog {
+  margin-top: 65px;
+}
+
 .modal-header {
+  font-size: 1.0em;
   height: 65px;
 }
 
 .modal-footer {
   margin-top: 35px;
+}
+
+@media (min-width: $screen-sm-min) {
+  #ay_product_canvas .thumbnail {
+    height: 323px;
+  }
 }
