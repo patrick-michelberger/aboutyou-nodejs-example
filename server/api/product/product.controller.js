@@ -15,7 +15,8 @@ exports.index = function(req, res) {
             'min_price',
             'max_price',
             'sale',
-            'default_image'
+            'default_image',
+            'default_variant'
         ]
     );
     ay.fetchProductSearch(
@@ -45,6 +46,12 @@ var parseProductsToJSON = function(products) {
             "brand" : {
                 "id" : product.brand ? product.brand.id : 'undefined',
                 "name" : product.brand ? product.brand.name : 'undefined'
+            },
+            "defaultVariant" : {
+                "id" : product.defaultVariant.jsonObject ? product.defaultVariant.jsonObject.id : 'undefined',
+                "ean" : product.defaultVariant.jsonObject ? product.defaultVariant.jsonObject.ean : 'undefined',
+                "price" : product.defaultVariant.jsonObject ? product.defaultVariant.jsonObject.price : 'undefined',
+                "images" : product.defaultVariant.jsonObject ? product.defaultVariant.jsonObject.images : 'undefined'
             },
             "price" : product.minPrice,
             "defaultImage" : {
