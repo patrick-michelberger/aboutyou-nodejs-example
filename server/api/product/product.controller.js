@@ -43,13 +43,13 @@ var parseProductsToJSON = function(products) {
             "isActive" : product.isActive,
             "description" : product.descriptionShort,
             "brand" : {
-                "id" : product.brand.id,
-                "name" : product.brand.name
+                "id" : product.brand ? product.brand.id : 'undefined',
+                "name" : product.brand ? product.brand.name : 'undefined'
             },
             "price" : product.minPrice,
             "defaultImage" : {
-                "url" : product.defaultImage ? product.defaultImage.getUrl(450,450) : null,
-                "imageSize" : product.defaultImage ? product.defaultImage.imageSize : null
+                "url" : product.defaultImage ? product.defaultImage.getUrl(450,450) : 'undefined',
+                "imageSize" : product.defaultImage ? product.defaultImage.imageSize : 'undefined'
             }
         };
 
