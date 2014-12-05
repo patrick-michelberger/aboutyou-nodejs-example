@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('aboutYouApp')
-  .controller('MainCtrl', function ($scope, $http, $modal) {
+  .controller('MainCtrl', function ($scope, $http, $modal, appService) {
         $http.get('/api/products').success(function(products) {
             $scope.products = products;
         });
@@ -23,5 +23,9 @@ angular.module('aboutYouApp')
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
             });
+        };
+
+        $scope.openQuickView = function(product) {
+            AY.openProductLayer('THIS IS THE SESSION ID', product.id, appService.getCurrentApp().id);
         };
   });
