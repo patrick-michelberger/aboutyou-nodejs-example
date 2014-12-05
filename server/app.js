@@ -28,7 +28,6 @@ app.use(function(req,res,next){
             // find app token
             aboutYou[req.query.id] = require('x-aboutyou-sdk')(req.query.id, apps.getTokenById(req.query.id));
         }
-        console.log("initialize about you with: ", req.query.id);
         req.aboutYou = aboutYou[req.query.id];
     } else {
         req.aboutYou = aboutYou['100'];

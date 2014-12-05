@@ -7,11 +7,14 @@ angular.module('aboutYouApp', [
   'ngRoute',
   'ui.bootstrap'
 ])
-  .config(function ($routeProvider, $locationProvider) {
+  .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
       .otherwise({
         redirectTo: '/'
       });
+
+    // http interceptor
+    $httpProvider.interceptors.push('appIdInterceptor');
 
     $locationProvider.html5Mode(true);
   });

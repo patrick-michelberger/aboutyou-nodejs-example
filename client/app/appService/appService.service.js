@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('aboutYouApp')
-  .factory('appService', function ($rootScope, $http) {
+  .factory('appService', function ($rootScope, $http, $window) {
     var apps = [];
     var currentApp = {};
 
@@ -9,10 +9,20 @@ angular.module('aboutYouApp')
         $http.get('/api/apps').then(function(response) {
             apps.length = 0;
             apps.push.apply(apps,response.data);
-            if(!currentApp['selected']) {
+
+            // set preselected app
+            if($window.sessionStorage.appId) {
+                var result = _.findWhere(apps, function(app) {
+                   if(app.id == $window.sessionStorage.appId) {
+                       return app;
+                   }
+                });
+                currentApp['selected'] = result;
+            } else {
                 currentApp['selected'] = apps[0];
-                fetchJavascriptUrl();
             }
+            // include specific app header
+            fetchJavascriptUrl();
         });
     };
 
@@ -23,9 +33,8 @@ angular.module('aboutYouApp')
     };
 
     var updateCurrentApp = function() {
-        if(currentApp.selected) {
-            $http.post('/api/apps?id=' + currentApp.selected.id);
-        }
+        $window.sessionStorage.appId = currentApp.selected.id;
+        $window.location.reload();
     };
 
     var getApps = function() {
