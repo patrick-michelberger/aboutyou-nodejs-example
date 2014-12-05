@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('aboutYouApp')
-  .controller('ProductCtrl', function ($scope, $modal, appService) {
+  .controller('ProductCtrl', function ($scope, $modal, appService, $log) {
 
         $scope.openAdditionalDataLayer = function(size) {
 
@@ -14,7 +14,7 @@ angular.module('aboutYouApp')
                         return $scope.product;
                     }
                 }
-            })
+            });
 
             modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;

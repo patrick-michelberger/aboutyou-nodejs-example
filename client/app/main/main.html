@@ -28,7 +28,7 @@
         <button class="btn btn-default pull-right" ng-click="cancel()">X</button>
     </div>
     <div class="modal-body">
-        <form class="form-horizontal" role="form">
+        <form id="ay-attributes-form" class="form-horizontal" role="form">
             <div class="form-group form-group-lg">
                 <label class="col-sm-2 control-label">Produkt ID</label>
                 <div class="col-sm-10">
@@ -48,16 +48,21 @@
                 </div>
             </div>
             <h5 style="margin:30px 0px;">Weitere Attribute hinzufügen</h5>
+
+            <ul>
+                <li ng-repeat="(key, value) in attributes">{{key}} : {{value}}</li>
+            </ul>
+
             <div class="form-group form-group-lg">
                 <label class="col-sm-2 control-label" for="formGroupInputLarge">Key</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Schlüssel angeben">
+                    <input ng-model="newAttribute.key" class="form-control" type="text" id="formGroupInputLarge" placeholder="Schlüssel angeben">
                 </div>
                 </div>
             <div class="form-group form-group-lg">
                 <label class="col-sm-2 control-label" for="formGroupInputLarge">Value</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Wert angeben">
+                    <input ng-model="newAttribute.value" class="form-control" type="text" id="formGroupInputLarge" placeholder="Wert angeben">
                 </div>
             </div>
             <button class="btn btn-default pull-right" ng-click="addAttribute()">
