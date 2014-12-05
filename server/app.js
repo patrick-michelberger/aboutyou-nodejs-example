@@ -9,9 +9,12 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var express = require('express');
 var config = require('./config/environment');
+var apps = require('./config/app.settings.js');
 
-// ABOUT YOU module
-var aboutYou = require('x-aboutyou-sdk')(100,'3ed93394c2b5ebd12c104b177b928ad0');
+// ABOUT YOU moduleS
+var aboutYou = {
+    '100' : require('x-aboutyou-sdk')(100,'3ed93394c2b5ebd12c104b177b928ad0')
+};
 
 // Setup server
 var app = express();
@@ -19,7 +22,17 @@ var server = require('http').createServer(app);
 
 // Make the AboutYou module accessible to our router
 app.use(function(req,res,next){
-    req.aboutYou = aboutYou;
+    if (req.query.id) {
+        // check if AY module for this app is already available
+        if(!aboutYou[req.query.id]) {
+            // find app token
+            aboutYou[req.query.id] = require('x-aboutyou-sdk')(req.query.id, apps.getTokenById(req.query.id));
+        }
+        console.log("initialize about you with: ", req.query.id);
+        req.aboutYou = aboutYou[req.query.id];
+    } else {
+        req.aboutYou = aboutYou['100'];
+    }
     next();
 });
 
