@@ -4,5 +4,9 @@ var _ = require('lodash');
 
 // Get list of javascripts
 exports.index = function(req, res) {
-  res.json([]);
+  var ay = req.aboutYou;
+
+  res.json({
+      "url" : ay.javascriptTag
+  });
 };
