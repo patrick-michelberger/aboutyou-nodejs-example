@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('aboutYouApp')
-  .controller('ProductCtrl', function ($scope, $modal, appService, $log) {
+  .controller('ProductCtrl', function ($scope, $modal, appService, $log, productSet) {
 
         $scope.openAdditionalDataLayer = function(size) {
 
@@ -34,5 +34,10 @@ angular.module('aboutYouApp')
                 appService.getCurrentApp().selected.id,
                 appService.getCurrentApp().selected.id
             );
+        };
+
+        $scope.addToSet = function(product) {
+            product.quantity = 1;
+            productSet.items.push(product);
         };
   });

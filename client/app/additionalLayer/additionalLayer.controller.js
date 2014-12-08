@@ -13,11 +13,20 @@ angular.module('aboutYouApp')
 
     $scope.addAttribute = function () {
         $scope.attributes[$scope.newAttribute.key] = $scope.newAttribute.value;
-        console.log("$scope.attributes: ", $scope.attributes);
+        // clear
+        $scope.newAttribute = null;
+    };
+
+    $scope.removeAttribute = function (key) {
+        delete $scope.attributes[key];
     };
 
     $scope.cancel = function() {
         $modalInstance.dismiss('cancel');
+    };
+
+    $scope.isEmpty = function (obj) {
+        return angular.equals({},obj);
     };
 
   });
