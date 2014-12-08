@@ -3,6 +3,8 @@
 <div class="container-fluid" style="margin-bottom:65px;">
   <div id="ay_product_canvas" class="row">
     <div ng-repeat="product in products" class="col-xs-12 col-sm-4 col-md-2" ng-controller="ProductCtrl">
+
+        <!-- SINGLE PRODUCT -->
         <div class="thumbnail">
             <p>
                 <a ng-click="openQuickView(product)" href="#" class="btn btn-default" role="button"><i class="fa fa-info-circle"></i></a>
@@ -12,14 +14,18 @@
                 <h4 class="ay_brand_name">{{product.brand.name}}</h4>
                 <h5 class="ay_product_name">{{product.name}}</h5>
                 <p>
-                    <a ng-click="addToSet(product)" href="#" class="btn btn-default" role="button"><i class="fa fa-plus"></i> Set</a>
+                    <a ng-click="addToSet(product)" href="#" class="btn btn-default" role="button" ng-hide="addedToSet"><i class="fa fa-plus"></i> Set</a>
+                    <a ng-click="removeFromSet(product)" href="#" class="btn btn-info" role="button" ng-show="addedToSet">Added</a>
                 </p>
             </div>
         </div>
+
     </div>
   </div>
 </div>
 
+
+<!-- PRODUCT SET -->
 <footer id="footer">
     <div class="container">
         <div ng-controller="ProductSetCtrl">
@@ -38,6 +44,9 @@
     </div>
 </footer>
 
+
+
+<!-- ADDITIONAL DATA LAYER -->
 <script type="text/ng-template" id="additionalLayer.html">
     <div class="modal-header">
         <h3 class="modal-title pull-left">{{product.name}}</h3>

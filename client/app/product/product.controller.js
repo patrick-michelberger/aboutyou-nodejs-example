@@ -3,6 +3,16 @@
 angular.module('aboutYouApp')
   .controller('ProductCtrl', function ($scope, $modal, appService, $log, productSet) {
 
+        // Attributes
+        $scope.addedToSet = false;
+
+        $scope.$watch(function() {
+            return productSet;
+        }, function(newProductSet) {
+            $scope.addedToSet = (newProductSet.items.indexOf($scope.product) !== -1) ? true : false;
+        }, true);
+
+        // Methods
         $scope.openAdditionalDataLayer = function(size) {
 
             var modalInstance = $modal.open({
@@ -39,5 +49,6 @@ angular.module('aboutYouApp')
         $scope.addToSet = function(product) {
             product.quantity = 1;
             productSet.items.push(product);
+            $scope.addedToSet = true;
         };
   });
