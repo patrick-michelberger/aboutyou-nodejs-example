@@ -4,21 +4,25 @@ angular.module('aboutYouApp')
   .controller('AdditionalLayerCtrl', function ($scope, $modalInstance, product) {
 
     $scope.product = product;
-    $scope.attributes = {};
+
+    if($scope.product['additional_data'] === undefined) {
+        $scope.product['additional_data'] = {};
+    }
 
     $scope.addToBasket = function () {
-        alert("Legt Produkt oder Set in den Warenkorb");
+        console.log("Add variant to cart: ", $scope.product);
+        //ay.addToCart
         $modalInstance.close();
     };
 
     $scope.addAttribute = function () {
-        $scope.attributes[$scope.newAttribute.key] = $scope.newAttribute.value;
+        $scope.product['additional_data'][$scope.newAttribute.key] = $scope.newAttribute.value;
         // clear
         $scope.newAttribute = null;
     };
 
     $scope.removeAttribute = function (key) {
-        delete $scope.attributes[key];
+        delete $scope.product['additional_data'][key];
     };
 
     $scope.cancel = function() {
@@ -27,6 +31,10 @@ angular.module('aboutYouApp')
 
     $scope.isEmpty = function (obj) {
         return angular.equals({},obj);
+    };
+
+    $scope.saveItem = function() {
+        $modalInstance.close();
     };
 
   });

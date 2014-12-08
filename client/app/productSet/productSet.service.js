@@ -7,15 +7,5 @@ angular.module('aboutYouApp')
       "items" : []
     };
 
-    var isItemInSet = function(item) {
-        console.log("productSet ")
-
-        if(productSet.items.indexOf(item) !== -1) {
-            return true;
-        } else {
-            return false;
-        }
-    };
-
     return productSet;
   });
