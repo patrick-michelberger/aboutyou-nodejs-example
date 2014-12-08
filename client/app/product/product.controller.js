@@ -51,4 +51,8 @@ angular.module('aboutYouApp')
             productSet.items.push(product);
             $scope.addedToSet = true;
         };
+
+        $scope.removeFromSet = function(product, index) {
+            productSet.items.splice(productSet.items.indexOf($scope.product), 1);
+        };
   });
