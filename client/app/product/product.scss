@@ -1,0 +1,35 @@
+$screen-sm-min: 768px;
+
+#ay_product_canvas .caption {
+  text-align: center;
+}
+
+#ay_product_canvas .thumbnail {
+  cursor: pointer;
+  postion: relative;
+}
+
+#ay_product_canvas .thumbnail .btn-info {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+#ay_product_canvas .ay_brand_name {
+  font-size: 13px;
+}
+
+#ay_product_canvas .ay_product_name {
+  font-size: 11px;
+  font-weight: 100;
+}
+
+#ay-attributes-form i {
+  cursor: pointer;
+}
+
+@media (min-width: $screen-sm-min) {
+  #ay_product_canvas .thumbnail {
+    height: 385px;
+  }
+}
