@@ -16,7 +16,7 @@ angular.module('aboutYouApp')
         $scope.openAdditionalDataLayerSingle = function (size) {
 
             var modalInstance = $modal.open({
-                templateUrl: 'additionalLayer.html',
+                templateUrl: 'additionalLayerSingle.html',
                 controller: 'AdditionalLayerSingleCtrl',
                 size: size,
                 resolve: {

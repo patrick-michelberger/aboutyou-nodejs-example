@@ -1,4 +1,4 @@
-<script type="text/ng-template" id="additionalLayer.html">
+<script type="text/ng-template" id="additionalLayerSingle.html">
     <div class="modal-header">
         <h3 class="modal-title pull-left">{{product.name}}</h3>
         <button class="btn btn-default pull-right" ng-click="cancel()">X</button>
@@ -37,8 +37,15 @@
                 <label class="col-sm-3 control-label">Image URL</label>
 
                 <div class="col-sm-9">
-                    <input class="form-control" name="imageUrl" type="url" ng-model="product.additional_data.image_url"
-                           required/>
+                    <input class="form-control" name="imageUrl" type="url" ng-model="product.additional_data.image_url" />
+                </div>
+            </div>
+
+            <div ng-show="attributesForm.imageUrl.$valid" class="form-group form-group-lg"
+                 ng-class="{ 'has-error': attributesForm.description.$invalid && attributesForm.description.$dirty, 'has-success' : attributesForm.description.$valid }">
+                <label class="col-sm-3 control-label">Description (required)</label>
+                <div class="col-sm-9">
+                    <input class="form-control" name="description" type="text" ng-model="product.additional_data.description"/>
                 </div>
             </div>
 

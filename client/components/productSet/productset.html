@@ -6,7 +6,7 @@
                     <img ng-src="{{item.defaultImage.url}}&width=45&height=45"
                          ng-click="openAdditionalDataLayerSingle(item,'lg')"/>
                     <input type="number" ng-model="item.quantity" min="1"/>
-                    <button class="btn btn-default ay-btn-delete" ng-click="removeItemFromSet(item, $index)">
+                    <button class="btn btn-danger ay-btn-delete" ng-click="removeItemFromSet(item, $index)">
                         <i class="fa fa-times"></i>
                     </button>
                 </li>

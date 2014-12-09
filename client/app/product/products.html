@@ -2,7 +2,7 @@
     <div class="col-xs-6 col-sm-3 col-md-2" ng-controller="ProductCtrl" ng-repeat="product in products">
         <div class="thumbnail">
             <p>
-                <a ng-click="openQuickView(product)" href="#" class="btn btn-default" role="button"><i
+                <a ng-click="openQuickView(product)" href="#" class="btn btn-default ay-btn-info" role="button"><i
                         class="fa fa-info-circle"></i></a>
             </p>
             <img ng-click="openQuickView(product)" ng-src="{{product.defaultImage.url}}&quality=100"
@@ -16,7 +16,7 @@
                     <a ng-click="addToSet(product)" href="#" class="btn btn-default ay-btn-add" role="button"
                        ng-hide="addedToSet"><i class="fa fa-plus"></i> Set
                     </a>
-                    <a ng-click="removeFromSet(product)" href="#" class="btn btn-info ay-btn-remove" role="button"
+                    <a ng-click="removeFromSet(product)" href="#" class="btn btn-success ay-btn-remove" role="button"
                        ng-show="addedToSet"><i class="fa fa-times hidden-xs"></i> Added
                     </a>
                 </p>

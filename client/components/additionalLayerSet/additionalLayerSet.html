@@ -3,14 +3,17 @@
         <h3 class="modal-title pull-left">Set configuration</h3>
         <button class="btn btn-default pull-right" ng-click="cancel()">X</button>
     </div>
-    <div class="modal-body">
+    <div id="additionalLayerSet" class="modal-body">
         <form id="ay-attributes-set-form" class="form-horizontal" role="form" name="attributesSetForm" novalidate>
             <h4>Items</h4>
             <ul class="list-group">
                 <li ng-repeat="item in items" class="list-group-item">
+                    <button class="btn btn-danger ay-btn-remove" ng-click="removeItemFromSet(item, $index)"><i class="fa fa-times"></i></button>
+                    <button class="btn btn-default ay-btn-edit" ng-click="openAdditionalDataLayerSingle(item, 'lg')">Edit</button>
+
                     ID: {{item.id}} | Brand: {{item.brand.name}} | {{item.name}}
-                    <span class="badge">Quantity: {{item.quantity}}</span>
                     <br/>
+                    <span class="badge ay-quantity">Quantity: {{item.quantity}}</span>
                     <h5>Additional data</h5>
                         {   <br/>
                             &#160;&#160;&#160;&#160;<code>"additional_data"</code> : {
@@ -38,6 +41,13 @@
                 <div class="col-xs-12">
                     <input class="form-control" name="imageUrl" type="url" ng-model="set.additional_data.image_url"
                            required/>
+                </div>
+            </div>
+            <h4>Description (required)</h4>
+            <div class="form-group form-group-lg"
+                 ng-class="{ 'has-error': attributesSetForm.description.$invalid && attributesSetForm.description.$dirty, 'has-success' : attributesSetForm.description.$valid }">
+                <div class="col-xs-12">
+                    <input class="form-control" name="description" type="text" ng-model="set.additional_data.description" required/>
                 </div>
             </div>
             <h4>Additional data</h4>

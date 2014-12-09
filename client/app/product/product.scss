@@ -15,8 +15,18 @@ git #ay_product_canvas .caption {
 #ay_product_canvas .ay-btn-add,
 #ay_product_canvas .ay-btn-remove {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 0;
+  right: 0;
+  border-right: 0;
+  border-top: 0;
+}
+
+#ay_product_canvas .ay-btn-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 0;
+  border-top: 0;
 }
 
 #ay_product_canvas .ay_brand_name {

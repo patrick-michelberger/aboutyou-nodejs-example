@@ -1,18 +1,28 @@
 'use strict';
 
 angular.module('aboutYouApp')
-    .controller('AdditionalLayerSetCtrl', function ($scope, $window, $modalInstance, items, appService) {
+    .controller('AdditionalLayerSetCtrl', function ($scope, $window, $modal, $modalInstance, items, appService, productSet) {
 
-        $scope.items = items;
+        // attributes
+
+        $scope.items = productSet.items;
 
         $scope.set = {};
         $scope.set.quantity = 1;
-
-        $scope.newAttribute = {};
-
         if ($scope.set['additional_data'] === undefined) {
             $scope.set['additional_data'] = {};
         }
+
+        $scope.newAttribute = {};
+
+        // custom watchers
+        $scope.$watch('items', function(newValue) {
+           if(newValue.length < 1) {
+               $modalInstance.close();
+           }
+        }, true);
+
+        // methods
 
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
@@ -33,22 +43,40 @@ angular.module('aboutYouApp')
 
         $scope.addItemsToBasket = function (items) {
             var currentApp = appService.getCurrentApp();
-            //items, userId, appId, quantity, additionalData, callback
-
-            console.log("items: ", items);
 
             items = excludeItemIds(items);
 
-            console.log("excluded item ids: ", items);
-
-            console.log("$scope.set['additional_data']: ", $scope.set['additional_data']);
-
             $window.AY.addSetToBasket(items, 'MY_SESSION_ID', currentApp.selected.id, 1, $scope.set['additional_data'], function(error) {
-                console.log("set added to basket.");
+                $modalInstance.close();
             });
-
         };
 
+        $scope.removeItemFromSet = function (item, index) {
+            $scope.items.splice(index, 1);
+        };
+
+        $scope.openAdditionalDataLayerSingle = function (item, size) {
+
+            var modalInstance = $modal.open({
+                templateUrl: 'additionalLayerSingle.html',
+                controller: 'AdditionalLayerSingleCtrl',
+                size: size,
+                resolve: {
+                    product: function () {
+                        return item;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+                $scope.selected = selectedItem;
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+        };
+
+
+        // helpers
 
         var excludeItemIds = function(items) {
             return items.map(function(item) {
