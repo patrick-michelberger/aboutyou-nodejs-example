@@ -13,7 +13,7 @@ var apps = require('./config/app.settings.js');
 
 // ABOUT YOU moduleS
 var aboutYou = {
-    '100' : require('x-aboutyou-sdk')(100,'3ed93394c2b5ebd12c104b177b928ad0')
+    '100' : require('x-aboutyou-sdk')(100,'3ed93394c2b5ebd12c104b177b928ad0', 'live')
 };
 
 // Setup server
@@ -26,7 +26,7 @@ app.use(function(req,res,next){
         // check if AY module for this app is already available
         if(!aboutYou[req.query.id]) {
             // find app token
-            aboutYou[req.query.id] = require('x-aboutyou-sdk')(req.query.id, apps.getTokenById(req.query.id));
+            aboutYou[req.query.id] = require('x-aboutyou-sdk')(req.query.id, apps.getTokenById(req.query.id), 'live');
         }
         req.aboutYou = aboutYou[req.query.id];
     } else {
