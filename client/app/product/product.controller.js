@@ -13,11 +13,11 @@ angular.module('aboutYouApp')
         }, true);
 
         // Methods
-        $scope.openAdditionalDataLayer = function (size) {
+        $scope.openAdditionalDataLayerSingle = function (size) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'additionalLayer.html',
-                controller: 'AdditionalLayerCtrl',
+                controller: 'AdditionalLayerSingleCtrl',
                 size: size,
                 resolve: {
                     product: function () {

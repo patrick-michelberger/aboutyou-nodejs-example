@@ -4,7 +4,7 @@
             <ul class="list-inline hidden-xs" >
                 <li class="ay-product-preview" ng-repeat="item in items">
                     <img ng-src="{{item.defaultImage.url}}&width=45&height=45"
-                         ng-click="openAdditionalDataLayer(item,'lg')"/>
+                         ng-click="openAdditionalDataLayerSingle(item,'lg')"/>
                     <input type="number" ng-model="item.quantity" min="1"/>
                     <button class="btn btn-default ay-btn-delete" ng-click="removeItemFromSet(item, $index)">
                         <i class="fa fa-times"></i>
@@ -13,7 +13,7 @@
                 <li ng-hide="items.length"><i class="fa fa-plus"></i></li>
             </ul>
             <button class="btn btn-warning ay-btn-basket" ng-disabled="!items.length"
-                    ng-click="addItemsToBasket(items)">Produkte als Set in den Warenkorb legen
+                    ng-click="openAdditionalDataLayerSet(items,'lg')">Produkte als Set in den Warenkorb legen
             </button>
         </div>
     </div>

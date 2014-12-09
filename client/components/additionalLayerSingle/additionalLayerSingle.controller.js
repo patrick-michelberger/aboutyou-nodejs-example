@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('aboutYouApp')
-    .controller('AdditionalLayerCtrl', function ($scope, $modalInstance, product) {
+    .controller('AdditionalLayerSingleCtrl', function ($scope, $modalInstance, product) {
 
         $scope.product = product;
 

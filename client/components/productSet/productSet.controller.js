@@ -5,11 +5,11 @@ angular.module('aboutYouApp')
 
         $scope.items = productSet.items;
 
-        $scope.openAdditionalDataLayer = function (item, size) {
+        $scope.openAdditionalDataLayerSingle = function (item, size) {
 
             var modalInstance = $modal.open({
-                templateUrl: 'additionalLayer.html',
-                controller: 'AdditionalLayerCtrl',
+                templateUrl: 'additionalLayerSingle.html',
+                controller: 'AdditionalLayerSingleCtrl',
                 size: size,
                 resolve: {
                     product: function () {
@@ -26,20 +26,20 @@ angular.module('aboutYouApp')
 
         };
 
+        $scope.openAdditionalDataLayerSet = function (items, size) {
+            var modalInstance = $modal.open({
+                templateUrl: 'additionalLayerSet.html',
+                controller: 'AdditionalLayerSetCtrl',
+                size: size,
+                resolve: {
+                    items: function () {
+                        return items;
+                    }
+                }
+            });
+        };
+
         $scope.removeItemFromSet = function (item, index) {
             $scope.items.splice(index, 1);
         };
-
-        $scope.addItemsToBasket = function (items) {
-            var currentApp = appService.getCurrentApp();
-            console.log("items: ", items);
-            //items, userId, appId, quantity, additionalData, callback
-
-
-            $window.AY.addSetToBasket(items, currentApp.selected.id, currentApp.selected.id, 1, {"image_url" : "http://awesomeshit.ninja/wp-content/uploads/2014/11/grumpy-cat-no.jpg"}, function(error) {
-                console.log("set added to basket.");
-            });
-
-        };
-
     });
