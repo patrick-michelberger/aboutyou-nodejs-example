@@ -1,19 +1,19 @@
 'use strict';
 
 angular.module('aboutYouApp')
-  .controller('ProductCtrl', function ($scope, $modal, appService, $log, productSet) {
+    .controller('ProductCtrl', function ($scope, $modal, appService, $log, productSet) {
 
         // Attributes
         $scope.addedToSet = false;
 
-        $scope.$watch(function() {
+        $scope.$watch(function () {
             return productSet;
-        }, function(newProductSet) {
+        }, function (newProductSet) {
             $scope.addedToSet = (newProductSet.items.indexOf($scope.product) !== -1) ? true : false;
         }, true);
 
         // Methods
-        $scope.openAdditionalDataLayer = function(size) {
+        $scope.openAdditionalDataLayer = function (size) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'additionalLayer.html',
@@ -33,11 +33,11 @@ angular.module('aboutYouApp')
             });
         };
 
-        $scope.openQuickView = function(product) {
+        $scope.openQuickView = function (product) {
             AY.openProductLayer(appService.getCurrentApp().selected.id, product.id, appService.getCurrentApp().id);
         };
 
-        $scope.addToCart = function(product) {
+        $scope.addToCart = function (product) {
             AY.addToCart(
                 product.defaultVariant.id,
                 1,
@@ -46,13 +46,13 @@ angular.module('aboutYouApp')
             );
         };
 
-        $scope.addToSet = function(product) {
+        $scope.addToSet = function (product) {
             product.quantity = 1;
             productSet.items.push(product);
             $scope.addedToSet = true;
         };
 
-        $scope.removeFromSet = function(product, index) {
+        $scope.removeFromSet = function (product, index) {
             productSet.items.splice(productSet.items.indexOf($scope.product), 1);
         };
-  });
+    });

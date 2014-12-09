@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: ProductCtrl', function () {
+describe('Controller: AdditionalLayerCtrl', function () {
 
     // load the controller's module
     beforeEach(module('aboutYouApp'));
 
-    var ProductCtrl, scope;
+    var AdditionalLayerCtrl, scope;
 
     // Initialize the controller and a mock scope
     beforeEach(inject(function ($controller, $rootScope) {
         scope = $rootScope.$new();
-        ProductCtrl = $controller('ProductCtrl', {
+        AdditionalLayerCtrl = $controller('AdditionalLayerCtrl', {
             $scope: scope
         });
     }));

@@ -1,20 +1,20 @@
 'use strict';
 
 angular.module('aboutYouApp', [
-  'ngCookies',
-  'ngResource',
-  'ngSanitize',
-  'ngRoute',
-  'ui.bootstrap'
+    'ngCookies',
+    'ngResource',
+    'ngSanitize',
+    'ngRoute',
+    'ui.bootstrap'
 ])
-  .config(function ($routeProvider, $locationProvider, $httpProvider) {
-    $routeProvider
-      .otherwise({
-        redirectTo: '/'
-      });
+    .config(function ($routeProvider, $locationProvider, $httpProvider) {
+        $routeProvider
+            .otherwise({
+                redirectTo: '/'
+            });
 
-    // http interceptor
-    $httpProvider.interceptors.push('appIdInterceptor');
+        // http interceptor
+        $httpProvider.interceptors.push('appIdInterceptor');
 
-    $locationProvider.html5Mode(true);
-  });
+        $locationProvider.html5Mode(true);
+    });

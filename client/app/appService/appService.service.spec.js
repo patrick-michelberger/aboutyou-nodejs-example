@@ -2,17 +2,17 @@
 
 describe('Service: appService', function () {
 
-  // load the service's module
-  beforeEach(module('aboutYouApp'));
+    // load the service's module
+    beforeEach(module('aboutYouApp'));
 
-  // instantiate service
-  var appService;
-  beforeEach(inject(function (_appService_) {
-    appService = _appService_;
-  }));
+    // instantiate service
+    var appService;
+    beforeEach(inject(function (_appService_) {
+        appService = _appService_;
+    }));
 
-  it('should do something', function () {
-    expect(!!appService).toBe(true);
-  });
+    it('should do something', function () {
+        expect(!!appService).toBe(true);
+    });
 
 });

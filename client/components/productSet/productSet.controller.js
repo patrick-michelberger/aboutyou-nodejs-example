@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('aboutYouApp')
-  .controller('ProductSetCtrl', function ($scope, productSet, $modal) {
+    .controller('ProductSetCtrl', function ($scope, productSet, $modal, $log) {
+
         $scope.items = productSet.items;
 
-        $scope.openAdditionalDataLayer = function(item, size) {
+        $scope.openAdditionalDataLayer = function (item, size) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'additionalLayer.html',
@@ -25,8 +26,12 @@ angular.module('aboutYouApp')
 
         };
 
-        $scope.removeItemFromSet = function(item, index) {
-            $scope.items.splice(index,1);
+        $scope.removeItemFromSet = function (item, index) {
+            $scope.items.splice(index, 1);
         };
 
-  });
+        $scope.addItemsToBasket = function (items) {
+            console.log("addItemsToBasket: ", items);
+        };
+
+    });

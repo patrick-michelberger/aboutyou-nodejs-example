@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: ProductCtrl', function () {
+describe('Controller: ProductSetCtrl', function () {
 
     // load the controller's module
     beforeEach(module('aboutYouApp'));
 
-    var ProductCtrl, scope;
+    var ProductSetCtrl, scope;
 
     // Initialize the controller and a mock scope
     beforeEach(inject(function ($controller, $rootScope) {
         scope = $rootScope.$new();
-        ProductCtrl = $controller('ProductCtrl', {
+        ProductSetCtrl = $controller('ProductSetCtrl', {
             $scope: scope
         });
     }));

@@ -1,144 +1,16 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="container-fluid" style="margin-bottom:65px;">
-  <div id="ay_product_canvas" class="row">
-    <div ng-repeat="product in products" class="col-xs-12 col-sm-4 col-md-2" ng-controller="ProductCtrl">
-
-        <!-- SINGLE PRODUCT -->
-        <div class="thumbnail">
-            <p>
-                <a ng-click="openQuickView(product)" href="#" class="btn btn-default" role="button"><i class="fa fa-info-circle"></i></a>
-            </p>
-            <img ng-click="openAdditionalDataLayer(product, 'lg')" ng-src="{{product.defaultImage.url}}&quality=100" alt="{{product.name}}" class="img-responsive" />
-            <div class="caption">
-                <h4 class="ay_brand_name">{{product.brand.name}}</h4>
-                <h5 class="ay_product_name">{{product.name}}</h5>
-                <p>
-                    <a ng-click="addToSet(product)" href="#" class="btn btn-default" role="button" ng-hide="addedToSet"><i class="fa fa-plus"></i> Set</a>
-                    <a ng-click="removeFromSet(product)" href="#" class="btn btn-info" role="button" ng-show="addedToSet"><i class="fa fa-times"></i> Added</a>
-
-                </p>
-            </div>
-        </div>
-
+<div class="container-fluid">
+    <div class="row">
+        <!-- PRODUCT CANVAS -->
+        <div ng-include="'app/product/products.html'"></div>
     </div>
-  </div>
 </div>
 
 
 <!-- PRODUCT SET -->
-<footer id="footer">
-    <div class="container">
-        <div ng-controller="ProductSetCtrl">
-            <ul class="list-inline">
-                <li class="ay-product-preview" ng-repeat="item in items">
-                    <img ng-src="{{item.defaultImage.url}}&width=45&height=45" ng-click="openAdditionalDataLayer(item,'lg')" />
-                    <input type="number" ng-model="item.quantity" min="1"/>
-                    <button class="btn btn-default ay-btn-delete" ng-click="removeItemFromSet(item, $index)">
-                        <i class="fa fa-times"></i>
-                    </button>
-                </li>
-                <li ng-hide="items.length"><i class="fa fa-plus"></i></li>
-            </ul>
-            <button class="btn btn-warning ay-btn-basket" ng-disabled="!items.length">Produkte als Set in den Warenkorb legen</button>
-        </div>
-    </div>
-</footer>
-
+<div ng-include="'components/productSet/productset.html'"></div>
 
 
 <!-- ADDITIONAL DATA LAYER -->
-<script type="text/ng-template" id="additionalLayer.html">
-    <div class="modal-header">
-        <h3 class="modal-title pull-left">{{product.name}}</h3>
-        <button class="btn btn-default pull-right" ng-click="cancel()">X</button>
-    </div>
-    <div class="modal-body">
-        <form id="ay-attributes-form" class="form-horizontal" role="form" name="attributesForm" novalidate>
-
-            <div class="form-group form-group-lg">
-                <label class="col-sm-3 control-label">Produkt ID</label>
-                <div class="col-sm-9">
-                    <p class="form-control-static">{{product.id}}</p>
-                </div>
-            </div>
-
-            <div class="form-group form-group-lg">
-                <label class="col-sm-3 control-label">Marke</label>
-                <div class="col-sm-9">
-                    <p class="form-control-static">{{product.brand.name}}</p>
-                </div>
-            </div>
-
-            <div class="form-group form-group-lg" ng-class="{ 'has-error': attributesForm.quantity.$invalid && attributesForm.quantity.$dirty, 'has-success' : attributesForm.quantity.$valid }">
-                <label class="col-sm-3 control-label">Menge</label>
-                <div class="col-sm-9">
-                    <input class="form-control"name="quantity" type="number" ng-model="product.quantity" min="1" required />
-                </div>
-            </div>
-
-            <div class="form-group form-group-lg" ng-class="{ 'has-error': attributesForm.imageUrl.$invalid && attributesForm.imageUrl.$dirty, 'has-success' : attributesForm.imageUrl.$valid }">
-                <label class="col-sm-3 control-label">Image URL</label>
-                <div class="col-sm-9">
-                    <input class="form-control"name="imageUrl" type="url" ng-model="product.additional_data.imageUrl" required />
-                </div>
-            </div>
-
-            <div class="form-group form-group-lg">
-                <label class="col-sm-3 control-label">additional data</label>
-                <div class="col-sm-9">
-                    <table class="table table-bordered table-striped">
-                        <colgroup>
-                            <col class="col-xs-1">
-                            <col class="col-xs-7">
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>Key</th>
-                            <th>Value</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="(key, value) in product.additional_data">
-                                <td>
-                                    <code>{{key}}</code>
-                                </td>
-                                <td>
-                                    <code>{{value}}</code>
-                                    <i class="fa fa-times pull-right " ng-click="removeAttribute(key)"></i>
-                                </td>
-                            </tr>
-                            <tr ng-show="isEmpty(product.additional_data)">
-                                <td>
-                                    --
-                                </td>
-                                <td>
-                                    --
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="form-group form-group-lg">
-                <label class="col-sm-3 control-label">Key</label>
-                <div class="col-sm-9">
-                    <input ng-model="newAttribute.key" class="form-control" type="text" name="keyInput" placeholder="Schlüssel angeben">
-                </div>
-            </div>
-            <div class="form-group form-group-lg">
-                <label class="col-sm-3 control-label">Value</label>
-                <div class="col-sm-9">
-                    <input ng-model="newAttribute.value" class="form-control" type="text" name="valueInput" placeholder="Wert angeben">
-                </div>
-            </div>
-            <button class="btn btn-default pull-right" ng-click="addAttribute()">
-                <i class="fa fa-plus-circle"></i>
-            </button>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" ng-disabled="attributesForm.$invalid" ng-click="saveItem()">Speichern</button>
-    </div>
-</script>
+<div ng-include="'components/additionalLayer/additionalLayer.html'"></div>

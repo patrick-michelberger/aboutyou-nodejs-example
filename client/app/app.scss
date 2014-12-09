@@ -9,10 +9,10 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
  */
 
 .browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
 }
 
 // Component styles are injected through grunt
@@ -22,5 +22,5 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 // endinjector
 
 * {
-  border-radius: 0!important;
+  border-radius: 0 !important;
 }
