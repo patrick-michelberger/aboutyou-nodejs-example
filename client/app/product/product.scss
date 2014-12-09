@@ -1,15 +1,19 @@
-$screen-sm-min: 768px;
-
-#ay_product_canvas .caption {
+git #ay_product_canvas .caption {
   text-align: center;
 }
 
 #ay_product_canvas .thumbnail {
   cursor: pointer;
-  postion: relative;
+  position: relative;
+  height: 300px;
 }
 
-#ay_product_canvas .thumbnail .btn-info {
+#ay_product_canvas .thumbnail img {
+  margin-top: 10px;
+}
+
+#ay_product_canvas .ay-btn-add,
+#ay_product_canvas .ay-btn-remove {
   position: absolute;
   top: 5px;
   right: 5px;
@@ -30,6 +34,10 @@ $screen-sm-min: 768px;
 
 @media (min-width: $screen-sm-min) {
   #ay_product_canvas .thumbnail {
-    height: 385px;
+    height: 350px;
+  }
+
+  #ay_product_canvas .thumbnail img {
+    margin-top: 40px;
   }
 }

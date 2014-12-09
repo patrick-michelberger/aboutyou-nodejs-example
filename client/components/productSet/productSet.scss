@@ -52,3 +52,12 @@
   position: absolute;
   bottom: -8px;
 }
+
+@media (max-width: $screen-xs-max) {
+  #footer .ay-btn-basket {
+    position: absolute;
+    left: 50%;
+    margin-left: -140px;
+  }
+
+}

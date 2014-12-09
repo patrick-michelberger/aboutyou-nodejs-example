@@ -1,7 +1,7 @@
 <footer id="footer">
     <div class="container">
         <div ng-controller="ProductSetCtrl">
-            <ul class="list-inline">
+            <ul class="list-inline hidden-xs" >
                 <li class="ay-product-preview" ng-repeat="item in items">
                     <img ng-src="{{item.defaultImage.url}}&width=45&height=45"
                          ng-click="openAdditionalDataLayer(item,'lg')"/>

@@ -1,25 +1,27 @@
-<div id="ay_product_canvas" class="col-xs-12 col-sm-4 col-md-2" ng-controller="ProductCtrl" ng-repeat="product in products">
-    <div class="thumbnail">
-        <p>
-            <a ng-click="openQuickView(product)" href="#" class="btn btn-default" role="button"><i
-                    class="fa fa-info-circle"></i></a>
-        </p>
-        <img ng-click="openAdditionalDataLayer(product, 'lg')" ng-src="{{product.defaultImage.url}}&quality=100"
-             alt="{{product.name}}" class="img-responsive"/>
-
-        <div class="caption">
-            <h4 class="ay_brand_name">{{product.brand.name}}</h4>
-            <h5 class="ay_product_name">{{product.name}}</h5>
-
+<div id="ay_product_canvas">
+    <div class="col-xs-6 col-sm-3 col-md-2" ng-controller="ProductCtrl" ng-repeat="product in products">
+        <div class="thumbnail">
             <p>
-                <a ng-click="addToSet(product)" href="#" class="btn btn-default" role="button"
-                   ng-hide="addedToSet"><i class="fa fa-plus"></i> Set
-                </a>
-                <a ng-click="removeFromSet(product)" href="#" class="btn btn-info" role="button"
-                   ng-show="addedToSet"><i class="fa fa-times"></i> Added
-                </a>
+                <a ng-click="openQuickView(product)" href="#" class="btn btn-default" role="button"><i
+                        class="fa fa-info-circle"></i></a>
             </p>
+            <img ng-click="openAdditionalDataLayer(product, 'lg')" ng-src="{{product.defaultImage.url}}&quality=100"
+                 alt="{{product.name}}" width="135"/>
 
+            <div class="caption">
+                <h4 class="ay_brand_name">{{product.brand.name}}</h4>
+                <h5 class="ay_product_name">{{product.name}}</h5>
+
+                <p>
+                    <a ng-click="addToSet(product)" href="#" class="btn btn-default ay-btn-add" role="button"
+                       ng-hide="addedToSet"><i class="fa fa-plus"></i> Set
+                    </a>
+                    <a ng-click="removeFromSet(product)" href="#" class="btn btn-info ay-btn-remove" role="button"
+                       ng-show="addedToSet"><i class="fa fa-times hidden-xs"></i> Added
+                    </a>
+                </p>
+
+            </div>
         </div>
     </div>
 </div>
