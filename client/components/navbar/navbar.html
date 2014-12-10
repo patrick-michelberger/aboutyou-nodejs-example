@@ -19,8 +19,8 @@
                             <span class="caret" ng-show="parent.subCats.length>1" ></span>
                         </a>
                         <ul ng-show="parent.subCats.length>1" class="dropdown-menu">
-                            <li ng-repeat="subCat in parent.subCats">
-                                <a role="menuitem" tabindex="-1" ng-href="/categories/{{subCat.id}}">{{subCat.name}}</a>
+                            <li ng-click="selectCategory(subCat.id)" ng-repeat="subCat in parent.subCats">
+                                <a role="menuitem" tabindex="-1">{{subCat.name}}</a>
                                 <ul>
                                     <li ng-repeat="subSubCat in subCat.subCats">
                                         <a ng-href="/categories/{{subSubCat.id}}">

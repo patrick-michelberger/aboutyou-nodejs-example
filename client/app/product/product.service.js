@@ -2,23 +2,30 @@
 
 angular.module('aboutYouApp')
   .factory('productService', function ($rootScope, $http) {
-    var products = [];
+    var ProductService = {}
 
-    var fetchProducts = function () {
+    ProductService.products = [];
+
+    ProductService.fetchProducts = function () {
         $http.get('/api/products').success(function (newProducts) {
-            products.length = 0;
-            products = newProducts;
+            ProductService.products.length = 0;
+            ProductService.products = newProducts;
             $rootScope.$broadcast('productService:products:fetched');
         });
     };
 
-    var getProducts = function() {
-        return products;
+    ProductService.fetchProductsByCategoryId = function (id) {
+        $http.get('/api/categories/' + id + '/products').success(function (newProducts) {
+            ProductService.products.length = 0;
+            ProductService.products = newProducts;
+            console.log("NEW PRODUCTS");
+        });
     };
 
-    // Public API here
-    return {
-      getProducts : getProducts,
-      fetchProducts : fetchProducts
+
+    ProductService.getProducts = function() {
+        return ProductService.products;
     };
+
+    return ProductService;
   });
