@@ -86,4 +86,16 @@ angular.module('aboutYouApp')
                 };
             });
         }
+
+        // HACK: watch for empty value keys
+        $scope.$watch('set.additional_data', function(additionalData) {
+            // check if a key is undefined
+            for(var key in additionalData) {
+                var value = additionalData[key];
+                if(typeof(value) === 'undefined' || value === "") {
+                    delete additionalData[key];
+                }
+            }
+        }, true);
+
     });
