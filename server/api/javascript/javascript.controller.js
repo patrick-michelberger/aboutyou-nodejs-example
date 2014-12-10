@@ -7,6 +7,6 @@ exports.index = function(req, res) {
   var ay = req.aboutYou;
 
   res.json({
-      "url" : ay.javascriptTag
+      "url" : ay.javaScriptTag
   });
 };
