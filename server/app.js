@@ -22,15 +22,19 @@ var server = require('http').createServer(app);
 
 // Make the AboutYou module accessible to our router
 app.use(function(req,res,next){
-    if (req.query.id) {
-        // check if AY module for this app is already available
-        if(!aboutYou[req.query.id]) {
-            // find app token
-            aboutYou[req.query.id] = require('x-aboutyou-sdk')(req.query.id, apps.getTokenById(req.query.id), 'live');
+    var id = req.query.id;
+    // check for api route
+    if(isApiEndpoint(req.path)) {
+        if (typeof(id) !== "undefined" && apps.checkValidId(id)) {
+            // check if AY module for this app is already available
+            if(!aboutYou[id]) {
+                // find app token
+                aboutYou[id] = require('x-aboutyou-sdk')(id, apps.getTokenById(id), 'live');
+            }
+            req.aboutYou = aboutYou[id];
+        } else {
+            req.aboutYou = aboutYou['100'];
         }
-        req.aboutYou = aboutYou[req.query.id];
-    } else {
-        req.aboutYou = aboutYou['100'];
     }
     next();
 });
@@ -45,3 +49,13 @@ server.listen(config.port, config.ip, function () {
 
 // Expose app
 exports = module.exports = app;
+
+
+var isApiEndpoint = function(url) {
+    var regex = /\/api\/.*/;
+    var match = regex.exec(url);
+    if(match) {
+        return true;
+    }
+    return false;
+};
