@@ -47,7 +47,7 @@ angular.module('aboutYouApp')
         };
 
         $scope.addToSet = function (product) {
-            product.quantity = 1;
+            product.quantity = product.quantity || 1;
             productSet.items.push(product);
             $scope.addedToSet = true;
         };

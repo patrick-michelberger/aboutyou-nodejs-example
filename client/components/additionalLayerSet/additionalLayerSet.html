@@ -10,8 +10,7 @@
                 <li ng-repeat="item in items" class="list-group-item">
                     <button class="btn btn-danger ay-btn-remove" ng-click="removeItemFromSet(item, $index)"><i class="fa fa-times"></i></button>
                     <button class="btn btn-default ay-btn-edit" ng-click="openAdditionalDataLayerSingle(item, 'lg')">Edit</button>
-
-                    ID: {{item.id}} | Brand: {{item.brand.name}} | {{item.name}}
+                    ID: {{item.defaultVariant.id}} | Brand: {{item.brand.name}} | {{item.name}}
                     <br/>
                     <span class="badge ay-quantity">Quantity: {{item.quantity}}</span>
                     <h5>Additional data</h5>

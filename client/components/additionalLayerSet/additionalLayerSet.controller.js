@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('aboutYouApp')
-    .controller('AdditionalLayerSetCtrl', function ($scope, $window, $modal, $modalInstance, items, appService, productSet) {
+    .controller('AdditionalLayerSetCtrl', function ($rootScope, $scope, $window, $modal, $modalInstance, items, appService, productSet) {
 
         // attributes
 
         $scope.items = productSet.items;
 
         $scope.set = {};
-        $scope.set.quantity = 1;
+        $scope.set.quantity = $scope.set.quantity || 1;
         if ($scope.set['additional_data'] === undefined) {
             $scope.set['additional_data'] = {};
         }
@@ -46,7 +46,9 @@ angular.module('aboutYouApp')
 
             items = excludeItemIds(items);
 
-            $window.AY.addSetToBasket(items, 'MY_SESSION_ID', currentApp.selected.id, 1, $scope.set['additional_data'], function(error) {
+            $window.AY.addSetToBasket(items, 'MY_SESSION_ID', currentApp.selected.id, $scope.set.quantity, $scope.set['additional_data'], function(error) {
+                $rootScope.$broadcast('basket:set:added');
+                productSet.items.length = 0;
                 $modalInstance.close();
             });
         };
@@ -82,6 +84,7 @@ angular.module('aboutYouApp')
             return items.map(function(item) {
                 return {
                     "id" : item.defaultVariant.id,
+                    "quantity" : item.quantity,
                     "additional_data" : item.additional_data
                 };
             });

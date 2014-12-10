@@ -1,4 +1,8 @@
-git #ay_product_canvas .caption {
+#ay_product_canvas {
+  margin-top: 20px;
+}
+
+#ay_product_canvas .caption {
   text-align: center;
 }
 
@@ -50,4 +54,8 @@ git #ay_product_canvas .caption {
   #ay_product_canvas .thumbnail img {
     margin-top: 40px;
   }
+}
+
+#ay_product_canvas .ay-loader {
+  text-align: center;
 }

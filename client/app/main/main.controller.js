@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('aboutYouApp')
-    .controller('MainCtrl', function ($scope, $http) {
-        $http.get('/api/products').success(function (products) {
-            $scope.products = products;
+    .controller('MainCtrl', function ($scope, productService) {
+        $scope.$on('productService:products:fetched', function() {
+            $scope.products = productService.getProducts();
         });
+
+        productService.fetchProducts();
     });
