@@ -22,6 +22,7 @@
                 </div>
             </div>
 
+            <!-- QUANTITY -->
             <div class="form-group form-group-lg"
                  ng-class="{ 'has-error': attributesForm.quantity.$invalid && attributesForm.quantity.$dirty, 'has-success' : attributesForm.quantity.$valid }">
                 <label class="col-sm-3 control-label">Menge</label>
@@ -32,16 +33,17 @@
                 </div>
             </div>
 
+            <!-- IMAGE URL -->
             <div class="form-group form-group-lg"
-                 ng-class="{ 'has-error': attributesForm.imageUrl.$invalid && attributesForm.imageUrl.$dirty, 'has-success' : attributesForm.imageUrl.$valid }">
+                 ng-class="{ 'has-error': attributesForm.imageUrl.$invalid && attributesForm.imageUrl.$dirty}">
                 <label class="col-sm-3 control-label">Image URL</label>
-
                 <div class="col-sm-9">
                     <input class="form-control" name="imageUrl" type="url" ng-model="product.additional_data.image_url" />
                 </div>
             </div>
 
-            <div ng-show="attributesForm.imageUrl.$valid" class="form-group form-group-lg"
+            <!-- DESCRIPTION -->
+            <div ng-show="product.additional_data.image_url.length&&attributesForm.imageUrl.$valid" class="form-group form-group-lg"
                  ng-class="{ 'has-error': attributesForm.description.$invalid && attributesForm.description.$dirty, 'has-success' : attributesForm.description.$valid }">
                 <label class="col-sm-3 control-label">Description (required)</label>
                 <div class="col-sm-9">
@@ -49,6 +51,7 @@
                 </div>
             </div>
 
+            <!-- ADDITIONAL DATA -->
             <div class="form-group form-group-lg">
                 <label class="col-sm-3 control-label">additional data</label>
 

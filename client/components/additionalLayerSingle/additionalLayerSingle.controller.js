@@ -9,12 +9,6 @@ angular.module('aboutYouApp')
             $scope.product['additional_data'] = {};
         }
 
-        $scope.addToBasket = function () {
-            console.log("Add variant to cart: ", $scope.product);
-            //ay.addToCart
-            $modalInstance.close();
-        };
-
         $scope.addAttribute = function () {
             $scope.product['additional_data'][$scope.newAttribute.key] = $scope.newAttribute.value;
             // clear

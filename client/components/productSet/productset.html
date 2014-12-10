@@ -2,9 +2,8 @@
     <div class="container">
         <div ng-controller="ProductSetCtrl">
             <ul class="list-inline hidden-xs" >
-                <li class="ay-product-preview" ng-repeat="item in items">
-                    <img ng-src="{{item.defaultImage.url}}&width=45&height=45"
-                         ng-click="openAdditionalDataLayerSingle(item,'lg')"/>
+                <li class="ay-product-preview" ng-repeat="item in items" ng-click="openAdditionalDataLayerSingle(item,'lg')">
+                    <img ng-src="{{item.defaultImage.url}}&width=45&height=45" />
                     <input type="number" ng-model="item.quantity" min="1"/>
                     <button class="btn btn-danger ay-btn-delete" ng-click="removeItemFromSet(item, $index)">
                         <i class="fa fa-times"></i>
