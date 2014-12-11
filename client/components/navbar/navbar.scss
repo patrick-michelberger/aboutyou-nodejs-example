@@ -2,6 +2,14 @@
   margin: 0;
 }
 
+#ay-navbar .navbar-nav {
+  marigin: 0;
+}
+
 #ay-navbar ul li {
   cursor: pointer;
+}
+
+#ay-navbar .dropdown-toggle {
+  padding: 10px;
 }
