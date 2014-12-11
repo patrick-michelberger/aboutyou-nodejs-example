@@ -5,7 +5,8 @@ angular.module('aboutYouApp', [
     'ngResource',
     'ngSanitize',
     'ngRoute',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'infinite-scroll'
 ])
     .config(function ($routeProvider, $locationProvider, $httpProvider) {
         $routeProvider

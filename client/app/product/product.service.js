@@ -7,10 +7,16 @@ angular.module('aboutYouApp')
     ProductService.products = [];
 
     ProductService.fetchProducts = function () {
-        $http.get('/api/products').success(function (newProducts) {
-            ProductService.products.length = 0;
-            ProductService.products = newProducts;
+        return $http.get('/api/products').then(function (response) {
+
+            var products = response.data;
+
+            for(var i = 0; i < products.length; i++) {
+                ProductService.products.push(products[i]);
+            }
+
             $rootScope.$broadcast('productService:products:fetched');
+
         });
     };
 
@@ -18,7 +24,6 @@ angular.module('aboutYouApp')
         $http.get('/api/categories/' + id + '/products').success(function (newProducts) {
             ProductService.products.length = 0;
             ProductService.products = newProducts;
-            console.log("NEW PRODUCTS");
         });
     };
 
