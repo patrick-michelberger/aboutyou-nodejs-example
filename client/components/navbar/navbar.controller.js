@@ -14,7 +14,13 @@ angular.module('aboutYouApp')
             appService.updateCurrentApp();
         }
 
-        $scope.selectCategory = function(id) {
+        $scope.selectSubCategory = function(id) {
+            console.log("selectSubCategory: ", id);
+            productService.fetchProductsByCategoryId(id);
+        };
+
+        $scope.selectSubSubCategory = function(id) {
+            console.log("selectSubSubCategory: ", id);
             productService.fetchProductsByCategoryId(id);
         };
 

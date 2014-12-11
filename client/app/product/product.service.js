@@ -11,7 +11,6 @@ angular.module('aboutYouApp')
     // attributes
     ProductService.products = [];
 
-
     // methods
     ProductService.loadProducts = function() {
         if(currentCategory === 0) {
