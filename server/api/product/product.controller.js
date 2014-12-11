@@ -6,7 +6,11 @@ var helpers = require('../../helpers.js');
 exports.index = function(req, res) {
     var ay = req.aboutYou;
 
-    var criteria = ay.productSearchCriteria.selectProductFields(
+    var criteria = ay.productSearchCriteria
+
+    var count = req.query.count || 0;
+
+    criteria.selectProductFields(
         [
             'active',
             'brand_id',
@@ -19,6 +23,9 @@ exports.index = function(req, res) {
             'default_variant'
         ]
     );
+
+    criteria.setLimit(25, count);
+
     ay.fetchProductSearch(
         criteria,
         function(error, productSearchResult) {

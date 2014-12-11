@@ -12,9 +12,10 @@ angular.module('aboutYouApp')
 
 
         $scope.loadMoreProducts = function() {
+            if ($scope.isLoadingProducts) return;
             $scope.isLoadingProducts = true;
-            productService.fetchProducts().then(function() {
-                $scope.isLoadingProducts = true;
+            productService.loadProducts().then(function() {
+                $scope.isLoadingProducts = false;
             });
         };
 

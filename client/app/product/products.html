@@ -1,5 +1,5 @@
 <div id="ay_product_canvas" class="container-fluid" ng-controller="ProductCanvasCtrl">
-    <div class="row" infinite-scroll="loadMoreProducts()" infinite-scroll-distance='3'>
+    <div class="row" infinite-scroll="loadMoreProducts()" infinite-scroll-disabled='isLoadingProducts'  infinite-scroll-distance='1'>
         <div class="col-xs-6 col-sm-3 col-md-2" ng-controller="ProductCtrl" ng-repeat="product in products">
             <div class="thumbnail">
                 <p>

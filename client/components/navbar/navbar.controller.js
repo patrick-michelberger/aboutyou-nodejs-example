@@ -2,6 +2,7 @@
 
 angular.module('aboutYouApp')
     .controller('NavbarCtrl', function ($scope, $location, $http, appService, productService) {
+
         $http.get('/api/categories').success(function (categories) {
             $scope.categories = categories;
         });
@@ -14,7 +15,6 @@ angular.module('aboutYouApp')
         }
 
         $scope.selectCategory = function(id) {
-            console.log("id: ", id)
             productService.fetchProductsByCategoryId(id);
         };
 

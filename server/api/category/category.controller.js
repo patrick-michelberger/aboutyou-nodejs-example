@@ -84,6 +84,8 @@ var index = function (req, res) {
 var products = function(req, res) {
     var ay = req.aboutYou;
     var categoryId = parseInt(req.params.id, 10);
+    var count = req.query.count || 0;
+
 
     var criteria = ay.productSearchCriteria;
 
@@ -101,6 +103,8 @@ var products = function(req, res) {
             'default_variant'
         ]
     );
+
+    criteria.setLimit(25, count);
 
     ay.fetchProductSearch(
         criteria,
