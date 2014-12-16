@@ -4,18 +4,21 @@
             <select ng-change="updateCurrentApp()" class="form-control pull-left col-xs-6" ng-model="currentApp.selected" ng-options="app.name for app in apps" style="margin-top:8px;"></select>
             <nav>
                 <ul class="nav navbar-nav">
-                    <li class="dropdown" ng-repeat="parent in categories" dropdown="">
-                        <a role="button" class="dropdown-toggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+                    <li class="dropdown" ng-repeat="parent in categories track by parent.id" dropdown="">
+                        <a ng-show="parent.subcategories.length>1" role="button" class="dropdown-toggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false" ng-href="/categories/{{parent.id}}">
                             {{parent.name}}
-                            <span class="caret" ng-show="parent.subCats.length>1" ></span>
+                            <span class="caret"></span>
                         </a>
-                        <ul ng-show="parent.subCats.length>1" class="dropdown-menu">
-                            <li ng-repeat="subCat in parent.subCats">
-                                <a ng-click="selectSubCategory(subCat.id)" role="menuitem" tabindex="-1">{{subCat.name}}</a>
+                        <a ng-hide="parent.subcategories.length>1" ng-click="selectCategory(parent)" role="button" class="dropdown-toggle" ng-href="/categories/{{parent.id}}">
+                            {{parent.name}}
+                        </a>
+                        <ul ng-show="parent.subcategories.length>1" class="dropdown-menu">
+                            <li ng-repeat="subcategory in parent.subcategories track by subcategory.id">
+                                <a ng-click="selectCategory(subcategory)" role="menuitem" tabindex="-1" ng-href="/categories/{{subcategory.id}}">{{subcategory.name}}</a>
                                 <ul>
-                                    <li ng-repeat="subSubCat in subCat.subCats">
-                                        <a ng-click="selectSubSubCategory(subSubCat.id)" ng-href="/categories/{{subSubCat.id}}">
-                                            {{subSubCat.name}}
+                                    <li ng-repeat="subcategory in subcategory.subcategories track by subcategory.id">
+                                        <a ng-click="selectCategory(subcategory)" ng-href="/categories/{{subcategory.id}}">
+                                            {{subcategory.name}}
                                         </a>
                                     </li>
                                 </ul>

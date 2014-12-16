@@ -30,8 +30,8 @@ exports.index = function(req, res) {
         criteria,
         function(error, productSearchResult) {
             // asynchronously called
-            var products = helpers.parseProductsToJSON(productSearchResult.products);
-            res.json(products);
+            //var products = helpers.parseProductsToJSON(productSearchResult.products);
+            res.json(productSearchResult.toJSON());
         }
     );
 

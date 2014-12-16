@@ -4,19 +4,22 @@ angular.module('aboutYouApp')
   .factory('productService', function ($rootScope, $http) {
 
     var ProductService = {}
-    var currentCategory = 0;
     var currentLimit = 25;
     var currentCount = 0;
 
+    var isLoading = false;
+
     // attributes
     ProductService.products = [];
+    ProductService.currentCategory = {};
+
 
     // methods
     ProductService.loadProducts = function() {
-        if(currentCategory === 0) {
+        if(typeof( ProductService.currentCategory.id) === 'undefined') {
             return ProductService.fetchProducts();
         } else {
-            return ProductService.fetchProductsByCategoryId(currentCategory);
+            return ProductService.fetchProductsByCategoryId(ProductService.currentCategory);
         }
     };
 
@@ -32,14 +35,8 @@ angular.module('aboutYouApp')
         });
     };
 
-    ProductService.fetchProductsByCategoryId = function (id) {
-        if(currentCategory != id) {
-            // clear previous products from other catergory
-            ProductService.products.length = 0;
-            currentCategory = id;
-            currentCount = 0;
-        }
-        return $http.get('/api/categories/' + id + '/products?count=' + currentCount).success(function (products) {
+    ProductService.fetchProductsByCategoryId = function (category) {
+        return $http.get('/api/categories/' + category.id + '/products?count=' + currentCount).success(function (products) {
             currentCount = currentCount + currentLimit;
             saveProducts(products);
         });
@@ -47,6 +44,15 @@ angular.module('aboutYouApp')
 
     ProductService.getProducts = function() {
         return ProductService.products;
+    };
+
+    ProductService.clearProducts = function(category) {
+        if( ProductService.currentCategory.id != category.id) {
+            // clear previous products from other catergory
+            ProductService.products.length = 0;
+            ProductService.currentCategory = category;
+            currentCount = 0;
+        }
     };
 
     // helpers

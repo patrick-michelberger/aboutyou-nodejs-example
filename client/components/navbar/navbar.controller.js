@@ -14,14 +14,8 @@ angular.module('aboutYouApp')
             appService.updateCurrentApp();
         }
 
-        $scope.selectSubCategory = function(id) {
-            console.log("selectSubCategory: ", id);
-            productService.fetchProductsByCategoryId(id);
-        };
-
-        $scope.selectSubSubCategory = function(id) {
-            console.log("selectSubSubCategory: ", id);
-            productService.fetchProductsByCategoryId(id);
+        $scope.selectCategory = function(id) {
+            productService.clearProducts(id);
         };
 
     });

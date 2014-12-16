@@ -1,12 +1,16 @@
 <div id="ay_product_canvas" class="container-fluid" ng-controller="ProductCanvasCtrl">
     <div class="row" infinite-scroll="loadMoreProducts()" infinite-scroll-disabled='isLoadingProducts'  infinite-scroll-distance='1'>
+        <h2 class="ay-category-name">
+            {{currentCategory.name}}
+            <span ng-hide="currentCategory.name">Node.js Test-App</span>
+        </h2>
         <div class="col-xs-6 col-sm-3 col-md-2" ng-controller="ProductCtrl" ng-repeat="product in products track by product.id">
             <div class="thumbnail">
                 <p>
                     <a ng-click="openQuickView(product)" href="#" class="btn btn-default ay-btn-info" role="button"><i
                             class="fa fa-info-circle"></i></a>
                 </p>
-                <img ng-click="openQuickView(product)" ng-src="{{product.defaultImage.url}}&quality=100" width="135"/>
+                <img ng-click="openQuickView(product)" ng-src="{{product.defaultImage.url}}?width=160" width="135"/>
                 <div class="caption">
                     <h4 class="ay_brand_name" ng-bind="product.brand.name"></h4>
                     <h5 class="ay_product_name" ng-bind="product.name"></h5>
