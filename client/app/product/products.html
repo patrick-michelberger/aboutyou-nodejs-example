@@ -10,7 +10,7 @@
                     <a ng-click="openQuickView(product)" href="#" class="btn btn-default ay-btn-info" role="button"><i
                             class="fa fa-info-circle"></i></a>
                 </p>
-                <img ng-click="openQuickView(product)" ng-src="{{product.defaultImage.url}}?width=160" width="135"/>
+                <img ng-click="openAdditionalDataLayerSingle('lg', product)" ng-src="{{product.defaultImage.url}}?width=160" width="135"/>
                 <div class="caption">
                     <h4 class="ay_brand_name" ng-bind="product.brand.name"></h4>
                     <h5 class="ay_product_name" ng-bind="product.name"></h5>
