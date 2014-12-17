@@ -9,16 +9,16 @@
                             {{parent.name}}
                             <span class="caret"></span>
                         </a>
-                        <a ng-hide="parent.subcategories.length>1" ng-click="selectCategory(parent)" role="button" class="dropdown-toggle" ng-href="/categories/{{parent.id}}">
+                        <a ng-hide="parent.subcategories.length>1" ng-click="selectCategory(parent);setBreadCrumb(parent)" role="button" class="dropdown-toggle" ng-href="/categories/{{parent.id}}">
                             {{parent.name}}
                         </a>
                         <ul ng-show="parent.subcategories.length>1" class="dropdown-menu">
                             <li ng-repeat="subcategory in parent.subcategories track by subcategory.id">
-                                <a ng-click="selectCategory(subcategory)" role="menuitem" tabindex="-1" ng-href="/categories/{{subcategory.id}}">{{subcategory.name}}</a>
+                                <a ng-click="selectCategory(subcategory);setBreadCrumb(parent,subcategory)" role="menuitem" tabindex="-1" ng-href="/categories/{{subcategory.id}}">{{subcategory.name}}</a>
                                 <ul>
-                                    <li ng-repeat="subcategory in subcategory.subcategories track by subcategory.id">
-                                        <a ng-click="selectCategory(subcategory)" ng-href="/categories/{{subcategory.id}}">
-                                            {{subcategory.name}}
+                                    <li ng-repeat="subSubcategory in subcategory.subcategories track by subSubcategory.id">
+                                        <a ng-click="selectCategory(subSubcategory);setBreadCrumb(parent,subcategory,subSubcategory)" ng-href="/categories/{{subcategory.id}}">
+                                            {{subSubcategory.name}}
                                         </a>
                                     </li>
                                 </ul>
