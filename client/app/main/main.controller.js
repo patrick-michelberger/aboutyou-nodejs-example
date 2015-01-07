@@ -5,7 +5,6 @@ angular.module('aboutYouApp')
         $scope.$watch(function() {
             return productService.currentCategory;
         }, function(newValue) {
-            console.log("new value: ", newValue);
             $scope.currentCategory = newValue;
         });
     });
