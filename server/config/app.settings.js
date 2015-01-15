@@ -25,11 +25,11 @@ var apps = [
         "id" : "53",
         "token" : 'h]vWu6PAuz7sfdYNZ5VqkfM^93W0k{3m',
         "name" : "EDITED"
-    }, 
+    },
     {
-	"id" : "318",
-	"token" : "if6bc936d12f08e090ed909ffa4e577e4",
-	"name" : "Testapp-NeuerKategoriebaum"
+        "id" : "318",
+        "token" : "f6bc936d12f08e090ed909ffa4e577e4",
+        "name" : "Testapp-NeuerKategoriebaum"
     }
 ];
 
