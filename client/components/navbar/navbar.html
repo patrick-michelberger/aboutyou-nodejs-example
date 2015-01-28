@@ -1,32 +1,29 @@
 <header id="ay-navbar" class="navbar navbar-default" ng-controller="NavbarCtrl">
     <div class="navbar-inner">
-        <div class="container-fluid">
-            <select ng-change="updateCurrentApp()" class="form-control pull-left col-xs-6" ng-model="currentApp.selected" ng-options="app.name for app in apps" style="margin-top:8px;"></select>
-            <nav>
-                <ul class="nav navbar-nav">
-                    <li class="dropdown" ng-repeat="parent in categories track by parent.id" dropdown="">
-                        <a ng-show="parent.subcategories.length>1" role="button" class="dropdown-toggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false" ng-href="/categories/{{parent.id}}">
-                            {{parent.name}}
-                            <span class="caret"></span>
-                        </a>
-                        <a ng-hide="parent.subcategories.length>1" ng-click="selectCategory(parent);setBreadCrumb(parent)" role="button" class="dropdown-toggle" ng-href="/categories/{{parent.id}}">
-                            {{parent.name}}
-                        </a>
-                        <ul ng-show="parent.subcategories.length>1" class="dropdown-menu">
-                            <li ng-repeat="subcategory in parent.subcategories track by subcategory.id">
-                                <a ng-click="selectCategory(subcategory);setBreadCrumb(parent,subcategory)" role="menuitem" tabindex="-1" ng-href="/categories/{{subcategory.id}}">{{subcategory.name}}</a>
-                                <ul>
-                                    <li ng-repeat="subSubcategory in subcategory.subcategories track by subSubcategory.id">
-                                        <a ng-click="selectCategory(subSubcategory);setBreadCrumb(parent,subcategory,subSubcategory)" ng-href="/categories/{{subcategory.id}}">
-                                            {{subSubcategory.name}}
-                                        </a>
-                                    </li>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <select ng-change="updateCurrentApp()" class="form-control pull-left col-xs-6" ng-model="currentApp.selected" ng-options="app.name for app in apps" style="margin-top:8px;"></select>
+                    </div>
+
+                    <div id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown" ng-repeat="category in categories">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{category.name}}<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="dropdown-submenu" ng-repeat="category in category.subcategories" ng-include="'category-menu-template.html'"></li>
                                 </ul>
                             </li>
                         </ul>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </nav>
-        </div>
     </div>
 </header>
+
+<script type="text/ng-template" id="category-menu-template.html">
+        <a ng-click="selectCategory(category)" ng-href="/categories/{{category.id}}" tabindex="-1" href="#">{{category.name}}</a>
+        <ul class="dropdown-menu">
+            <li ng-class="{'dropdown-submenu':category.subcategories.length}" ng-repeat="category in category.subcategories" ng-include="'category-menu-template.html'"></li>
+        </ul>
+</script>
