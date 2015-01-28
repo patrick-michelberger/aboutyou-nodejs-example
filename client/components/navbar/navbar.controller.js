@@ -5,7 +5,6 @@ angular.module('aboutYouApp')
 
         $http.get('/api/categories').success(function (categories) {
             $scope.categories = categories;
-            console.log("categories: ", $scope.categories);
         });
 
         $scope.apps = appService.getApps();
@@ -18,18 +17,4 @@ angular.module('aboutYouApp')
         $scope.selectCategory = function(category) {
             productService.clearProducts(category);
         };
-
-        $scope.setBreadCrumb = function() {
-          var args = Array.prototype.slice.apply(arguments);
-          $rootScope.currentBreadCrumb = getBreadcrumb(args);
-        };
-
-        function getBreadcrumb(categories) {
-            var path = categories[0].name;
-            for(var i = 1; i < categories.length; i++) {
-                path = path + ' > ' + categories[i].name;
-
-            }
-            return path;
-        }
     });
