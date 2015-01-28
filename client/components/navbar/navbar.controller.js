@@ -5,6 +5,7 @@ angular.module('aboutYouApp')
 
         $http.get('/api/categories').success(function (categories) {
             $scope.categories = categories;
+            console.log("categories: ", $scope.categories);
         });
 
         $scope.apps = appService.getApps();
