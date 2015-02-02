@@ -21,7 +21,7 @@ angular.module('aboutYouApp')
             $scope.isLoadingProducts = true;
               productService.loadProducts().then(function(response) {
                 $scope.isLoadingProducts = false;
-                if(response && response.data && response.data.length < 1) {
+                if(response && response.data && response.data.products && response.data.products.length < 1) {
                   moreProducts = false;
                 }
               });
