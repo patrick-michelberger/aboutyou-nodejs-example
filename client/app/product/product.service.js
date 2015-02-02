@@ -26,7 +26,8 @@ angular.module('aboutYouApp')
     ProductService.fetchProducts = function () {
         return $http.get('/api/products?count=' + currentCount).then(function (response) {
             currentCount = currentCount + currentLimit;
-            var products = response.data;
+            var products = response.data.products;
+            ProductService.count = response.data.count;
 
             saveProducts(products);
 
@@ -36,9 +37,13 @@ angular.module('aboutYouApp')
     };
 
     ProductService.fetchProductsByCategoryId = function (category) {
-        return $http.get('/api/categories/' + category.id + '/products?count=' + currentCount).success(function (products) {
-            currentCount = currentCount + currentLimit;
-            saveProducts(products);
+        return $http.get('/api/categories/' + category.id + '/products?count=' + currentCount).success(function (response) {
+          currentCount = currentCount + currentLimit;
+          ProductService.count = response.count;
+
+          var products = response.products;
+
+          saveProducts(products);
         });
     };
 
@@ -50,6 +55,7 @@ angular.module('aboutYouApp')
         if( ProductService.currentCategory.id != category.id) {
             // clear previous products from other catergory
             ProductService.products.length = 0;
+            ProductService.count = 0;
             ProductService.currentCategory = category;
             currentCount = 0;
         }

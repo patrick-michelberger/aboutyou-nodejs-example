@@ -3,6 +3,9 @@
         <h2 class="ay-category-name">
             {{currentBreadCrumb}}
             <span ng-hide="currentCategory.name">{{currentApp.selected.name}}</span>
+            <span ng-show="count&&currentCategory.name" class="pull-right" style="color:#808080;font-size:18px;"><b style="color:#000">{{count}}</b> Produkte in Kategorie</span>
+            <span ng-show="count&&!currentCategory.name" class="pull-right" style="color:#808080;font-size:18px;"><b style="color:#000">{{count}}</b> Produkte gesamt</span>
+
         </h2>
         <div class="col-xs-6 col-sm-3 col-md-2" ng-controller="ProductCtrl" ng-repeat="product in products track by product.id">
             <div class="thumbnail">

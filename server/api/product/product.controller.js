@@ -31,7 +31,10 @@ exports.index = function(req, res) {
         function(error, productSearchResult) {
             // asynchronously called
             //var products = helpers.parseProductsToJSON(productSearchResult.products);
-            res.json(productSearchResult.toJSON());
+          res.json({
+              "count" : productSearchResult.getProductCount(),
+              "products" : productSearchResult.toJSON()
+          });
         }
     );
 

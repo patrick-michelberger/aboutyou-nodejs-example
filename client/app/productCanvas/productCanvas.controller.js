@@ -9,7 +9,11 @@ angular.module('aboutYouApp')
             return productService.products;
         }, function (products) {
             $scope.products = products;
+            $scope.count = productService.count;
         }, true);
+
+
+
 
         $scope.loadMoreProducts = function() {
           if(moreProducts) {

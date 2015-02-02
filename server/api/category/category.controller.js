@@ -18,7 +18,6 @@ var products = function(req, res) {
     var categoryId = parseInt(req.params.id, 10);
     var count = req.query.count || 0;
 
-
     var criteria = ay.productSearchCriteria;
 
     criteria.filterByCategoryIds([categoryId]);
@@ -41,7 +40,10 @@ var products = function(req, res) {
     ay.fetchProductSearch(
         criteria,
         function(error, productSearchResult) {
-            res.json(productSearchResult.toJSON());
+          res.json({
+            "count" : productSearchResult.getProductCount(),
+            "products" : productSearchResult.toJSON()
+          });
         }
     );
 };
