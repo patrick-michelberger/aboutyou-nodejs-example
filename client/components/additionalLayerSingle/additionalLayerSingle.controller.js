@@ -6,19 +6,23 @@ angular.module('aboutYouApp')
         // attributes
         $scope.product = product;
 
+        /*
         if ($scope.product['additional_data'] === undefined) {
             $scope.product['additional_data'] = {};
         }
+        */
 
         // methods
         $scope.addAttribute = function () {
+            $scope.product['additional_data'] = $scope.product['additional_data'] ? $scope.product['additional_data'] : {};
             $scope.product['additional_data'][$scope.newAttribute.key] = $scope.newAttribute.value;
             // clear
             $scope.newAttribute = null;
         };
 
         $scope.removeAttribute = function (key) {
-            delete $scope.product['additional_data'][key];
+          delete $scope.product['additional_data'][key];
+          checkForEmptyData();
         };
 
         $scope.cancel = function () {
@@ -65,8 +69,16 @@ angular.module('aboutYouApp')
                 var value = additionalData[key];
                 if(typeof(value) === 'undefined' || value === "") {
                     delete additionalData[key];
+                    checkForEmptyData();
                 }
             }
         }, true);
+
+
+        var checkForEmptyData = function() {
+          if (angular.equals({}, $scope.product['additional_data'])) {
+            delete $scope.product['additional_data'];
+          }
+        };
 
     });
