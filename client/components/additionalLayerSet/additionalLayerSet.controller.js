@@ -46,8 +46,12 @@ angular.module('aboutYouApp')
 
             items = excludeItemIds(items);
 
-            $window.AY.addSetToBasket(items, 'MY_SESSION_ID', currentApp.selected.id, $scope.set.quantity, $scope.set['additional_data'], function(error) {
-                $rootScope.$broadcast('basket:set:added');
+            $window.AY.addSetToBasket(items, 'MY_SESSION_ID', currentApp.selected.id, $scope.set.quantity, $scope.set['additional_data'], function(addedToBasket) {
+                if(addedToBasket) {
+                  $rootScope.$broadcast('basket:set:added:success');
+                } else {
+                  $rootScope.$broadcast('basket:set:added:error');
+                }
                 productSet.items.length = 0;
                 $modalInstance.close();
             });

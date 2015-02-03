@@ -38,8 +38,12 @@ angular.module('aboutYouApp')
 
             item = excludeItemId(item);
 
-            $window.AY.addToCart(item.id, item.quantity, 'MY_SESSION_ID', currentApp.selected.id, item.additional_data, function(error) {
-                $rootScope.$broadcast('basket:set:added');
+            $window.AY.addToCart(item.id, item.quantity, 'MY_SESSION_ID', currentApp.selected.id, item.additional_data, function(addedToBasket) {
+                if (addedToBasket) {
+                  $rootScope.$broadcast('basket:set:added:success');
+                } else {
+                  $rootScope.$broadcast('basket:set:added:error');
+                }
                 $modalInstance.close();
             });
         };
