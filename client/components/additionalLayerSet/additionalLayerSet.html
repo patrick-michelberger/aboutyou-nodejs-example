@@ -42,6 +42,13 @@
                            required/>
                 </div>
             </div>
+            <h4>Name</h4>
+            <div class="form-group form-group-lg"
+                 ng-class="{ 'has-error': attributesSetForm.name.$invalid && attributesSetForm.name.$dirty, 'has-success' : attributesSetForm.name.$valid }">
+              <div class="col-xs-12">
+                <input class="form-control" name="name" type="text" ng-model="set.additional_data.name" />
+              </div>
+            </div>
             <h4>Description (required)</h4>
             <div class="form-group form-group-lg"
                  ng-class="{ 'has-error': attributesSetForm.description.$invalid && attributesSetForm.description.$dirty, 'has-success' : attributesSetForm.description.$valid }">
