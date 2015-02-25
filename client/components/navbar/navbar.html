@@ -5,7 +5,7 @@
                     <div class="navbar-header">
                         <select ng-change="updateCurrentApp()" class="form-control pull-left col-xs-6" ng-model="currentApp.selected" ng-options="app.name for app in apps" style="margin-top:8px;"></select>
                     </div>
-                    <div id="bs-example-navbar-collapse-1">
+                    <div ng-hide="hideCategories" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li ng-attr-category="{{category.name}}" class="dropdown" ng-repeat="category in categories">
                                 <a ng-attr-category="{{category.name}}" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{category.name}}<span class="caret"></span></a>

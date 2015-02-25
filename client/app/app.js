@@ -10,9 +10,13 @@ angular.module('aboutYouApp', [
 ])
     .config(function ($routeProvider, $locationProvider, $httpProvider) {
         $routeProvider
-            .otherwise({
-                redirectTo: '/'
-            });
+          .when('/iframe', {
+              templateUrl: 'app/iframe/iframe.html',
+              controller: 'IframeCtrl'
+          })
+          .otherwise({
+              redirectTo: '/'
+          });
 
         // http interceptor
         $httpProvider.interceptors.push('appIdInterceptor');
